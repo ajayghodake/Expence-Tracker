@@ -1,4 +1,4 @@
-import styles from "./BarChart.module.css";
+// import styles from "./BarChart.module.css";
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
