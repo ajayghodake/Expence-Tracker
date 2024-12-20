@@ -3,11 +3,12 @@
     margin-bottom: 10px;
 }
 .formWrapper form{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap:18px;
 }
-.formWrapper input{
+.formWrapper input,
+.formWrapper select{
     background: #FBFBFB;
     border:0;
     outline:0;
@@ -21,6 +22,6 @@
 }
 @media(max-width:767px){
     .formWrapper form{
-        flex-direction: column;
+        grid-template-columns:1fr ;
     }
 }

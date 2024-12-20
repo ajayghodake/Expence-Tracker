@@ -1,12 +1,6 @@
-import styled from "./PieChart.module.css";
+import styles from "./PieChart.module.css";
 import React, { useCallback, useState } from "react";
 import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
-
-const data = [
-  { name: "Food", value: 500 },
-  { name: "Entertainment", value: 300 },
-  { name: "Travel", value: 300 },
-];
 
 const COLORS = ["#A000FF", "#FF9304", "#FDE006"];
 
@@ -36,26 +30,43 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
-export default function PieChartComponent() {
+export default function PieChartComponent({ data }) {
   return (
-    <ResponsiveContainer width="100%" height={250}>
-      <PieChart width={400} height={400}>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
+    <div className={styles.categoryPriceChart}>
+      {data?.length ? (
+        <ResponsiveContainer width="100%" height={250}>
+          <PieChart width={400} height={400}>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Legend iconType="rect" verticalAlign="bottom" />
+          </PieChart>
+        </ResponsiveContainer>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Legend iconType="rect" verticalAlign="bottom" />
-      </PieChart>
-    </ResponsiveContainer>
+          No transactions!
+        </div>
+      )}
+    </div>
   );
 }
