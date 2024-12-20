@@ -6,7 +6,7 @@ import Modal from './components/Modal/Modal';
 import AddIncome from './components/Form/AddIncome/AddIncome';
 import AddExpenses from './components/Form/AddExpenses/AddExpenses';
 import BarChartComponent from "./components/BarChart/BarChartComponent";
-
+import Transactions from './components/Transactions/Transactions';
 
 // CustomHook to store and get user values Loacally
 const useLocalStorage = (key, initBalance) => {
@@ -66,11 +66,18 @@ const [isOpenAddExpenses, setIsOpenAddExpenses] = useState(false);
         ].filter((item) => item.value)}/>
       </div>
 
+      <div className={styles.transactionsWrapper}>
+
+        <Transactions transactions={expenses} editTransactions={setExpenses} balance={balance} setBalance={setBalance}/>
+
         <BarChartComponent data={[
-          { name: "Food", value: categoryQuantity.food },
-          { name: "Entertainment", value: categoryQuantity.entertainment },
-          { name: "Travel", value: categoryQuantity.travel },
-        ].filter((item) => item.value)}/>
+            { name: "Food", value: categoryQuantity.food },
+            { name: "Entertainment", value: categoryQuantity.entertainment },
+            { name: "Travel", value: categoryQuantity.travel },
+          ].filter((item) => item.value)}/>
+
+      </div>
+       
       
       <Modal isOpen={isOpenAddIncome} setIsOpen={setIsOpenAddIncome}>
         <AddIncome setIsOpen={setIsOpenAddIncome} setBalance={setBalance}/>
