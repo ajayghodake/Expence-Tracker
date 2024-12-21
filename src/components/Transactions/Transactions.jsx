@@ -49,7 +49,7 @@ export default function Transactions({title, transactions, editTransactions, bal
                         handleDelete={()=>handleDelete(transaction.id)}/>
                     ))}
                 </div>
-                    {totalPages > 1 && (<Pagination/>)}
+                    {totalPages > 1 && (<Pagination updatePage={setCurrentPage} currentPage={currentPage} totalPages={totalPages}/>)}
             </div>
         ) : (
             <div className={styles.emptyTransactionsWrapper}>
